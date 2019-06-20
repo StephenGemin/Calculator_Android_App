@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="mathOps">#F79231</color>
+    <color name="whiteText">#FFFFFF</color>
+    <color name="outputDisp">#242423</color>
+</resources>

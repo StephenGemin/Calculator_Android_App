@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginVertical">10pt</dimen>
+    <dimen name="marginLateral">5pt</dimen>
+    <dimen name="marginGlobal">10pt</dimen>
+</resources>
