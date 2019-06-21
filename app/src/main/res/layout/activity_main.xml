@@ -13,22 +13,38 @@
         <!--android:layout_margin="@dimen/marginGlobal"-->
 
     <LinearLayout
-        android:id="@+id/row1"
-        android:layout_width="match_parent"
-        android:layout_height="0pt"
-        android:layout_weight="0.24">
-        <TextView
-            android:id="@+id/calcOutput"
+            android:id="@+id/row1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom|right"
-            android:text=""
-            android:textColor="@color/whiteText"
-            android:background="@color/outputDisp"
-            android:textSize="34pt"
-            android:maxLines="1"
-            android:maxLength="12"
-            android:ems="10"/>
+            android:layout_height="0pt"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+        <TextView
+                android:id="@+id/calcHist"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="bottom|end"
+                android:text=""
+                android:textColor="@color /whiteText"
+                android:background="@color/outputDisp"
+                android:textSize="24pt"
+                android:maxLines="1"
+                android:maxLength="12"
+                android:ems="10"/>
+
+        <TextView
+                android:id="@+id/calcOutput"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_weight="0.6"
+                android:gravity="bottom|end"
+                android:text=""
+                android:textColor="@color/whiteText"
+                android:background="@color/colorAccent"
+                android:textSize="40pt"
+                android:maxLines="1"
+                android:maxLength="12"
+                android:ems="10"/>
     </LinearLayout>
 
     <LinearLayout

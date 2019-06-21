@@ -25,5 +25,6 @@
     <string name="btnPer">%</string>
     <string name="btnDec">.</string>
     <string name="btnEqual">=</string>
+    <string name="error">Error</string>
 
 </resources>
