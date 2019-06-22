@@ -25,9 +25,9 @@
                 android:layout_weight="0.4"
                 android:gravity="bottom|end"
                 android:text=""
-                android:textColor="@color /whiteText"
+                android:textColor="@color/whiteText"
                 android:background="@color/outputDisp"
-                android:textSize="24pt"
+                android:textSize="18pt"
                 android:maxLines="1"
                 android:maxLength="12"
                 android:ems="10"/>
@@ -68,7 +68,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btnSign"
-                android:onClick="buClick"
+                android:onClick="onSign"
                 android:textSize="14pt"
                 android:background="@drawable/button"/>
         <Button
@@ -77,7 +77,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btnPer"
-                android:onClick="buClick"
+                android:onClick="onPercent"
                 android:textSize="14pt"
                 android:background="@drawable/button"/>
         <Button
