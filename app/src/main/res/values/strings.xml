@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Calculator_V0.1</string>
 
-    # numbers
+    <!--numbers-->
     <string name="btn0">0</string>
     <string name="btn1">1</string>
     <string name="btn2">2</string>
@@ -13,13 +13,13 @@
     <string name="btn8">8</string>
     <string name="btn9">9</string>
 
-    # math ops
+    <!--math ops-->
     <string name="btnAdd">+</string>
     <string name="btnSub">-</string>
     <string name="btnMul">*</string>
     <string name="btnDiv">/</string>
 
-    #Other
+    <!--other-->
     <string name="btnAC">AC</string>
     <string name="btnSign">+/-</string>
     <string name="btnPer">%</string>

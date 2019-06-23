@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="btn_digits">#343434</color>
+    <color name="btn_ops">#FD9501</color>
+    <color name="btn_other">#A5A5A5</color>
+    <color name="btn_sci">#202020</color>
+    <color name="btn_pressed">#DFDDD9D9</color>
 
 
-    <color name="mathOps">#F79231</color>
     <color name="whiteText">#FFFFFF</color>
-    <color name="outputDisp">#242423</color>
+    <color name="blackText">#000000</color>
+    <color name="background">#000000</color>
+
 </resources>

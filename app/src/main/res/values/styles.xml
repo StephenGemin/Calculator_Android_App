@@ -3,9 +3,38 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="digit_buttons">
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="android:textSize">@dimen/buttonText</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="oper_buttons">
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="android:textSize">@dimen/buttonText</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="sci_buttons">
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="android:textSize">@dimen/buttonText</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="other_buttons">
+        <item name="android:textColor">@color/blackText</item>
+        <item name="android:textSize">@dimen/buttonText</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="calcOutputTextBox">
+        <item name="android:background">@color/background</item>
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="android:ems">@dimen/ems</item>
+        <item name="android:maxLines">@dimen/maxLines</item>
+
+    </style>
 </resources>

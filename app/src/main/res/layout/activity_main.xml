@@ -26,7 +26,7 @@
                 android:gravity="bottom|end"
                 android:text=""
                 android:textColor="@color/whiteText"
-                android:background="@color/outputDisp"
+                android:background="@color/background"
                 android:textSize="18pt"
                 android:maxLines="1"
                 android:maxLength="12"
@@ -40,11 +40,10 @@
                 android:gravity="bottom|end"
                 android:text=""
                 android:textColor="@color/whiteText"
-                android:background="@color/colorAccent"
+                android:background="@color/background"
                 android:textSize="40pt"
                 android:maxLines="1"
-                android:maxLength="12"
-                android:ems="10"/>
+                android:maxLength="12"/>
     </LinearLayout>
 
     <LinearLayout
