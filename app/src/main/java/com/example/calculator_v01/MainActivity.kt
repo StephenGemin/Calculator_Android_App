@@ -16,8 +16,6 @@ private const val TAG = "CALC"
 
 class MainActivity : AppCompatActivity() {
 
-
-
     lateinit var calcOutput : TextView
     lateinit var calcHist : TextView
     var buildString = ArrayList<String>()
@@ -129,18 +127,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun eval(txt:String):String{
+
+    fun eval(txt:String):String{
         Log.i(TAG, "eval method -> String to evaluate: $txt")
         val expression = ExpressionBuilder(txt).build()
         return (expression.evaluate()).toString()
     }
 
-//    private fun dblToInt(num:Double):String{
-//        if (num - num.toInt() == 0.0){
-//            return num.toInt().toString()
-//        }
-//        return num.toString()
-//    }
+    private fun dblToInt(num:Double):String{
+        if (num - num.toInt() == 0.0){
+            return num.toInt().toString()
+        }
+        return num.toString()
+    }
 
     private fun toDbl(input:TextView):Double{
         return input.text.toString().toDouble()
