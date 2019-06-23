@@ -1,48 +1,21 @@
 package com.example.calculator_v01
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.DisplayName
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
 
+import org.junit.Test
+import org.junit.Assert.*
+import org.junit.runners.Parameterized
 
-internal class MainActivityTest {
-    val cont = ApplicationProvider.getApplicationContext<Context>()
-//    @org.junit.jupiter.api.Test
-//    fun onDigit() {
-//    }
-//
-//    @org.junit.jupiter.api.Test
-//    fun onDecimal() {
-//    }
-//
-//    @org.junit.jupiter.api.Test
-//    fun onOperator() {
-//    }
-//
-//    @org.junit.jupiter.api.Test
-//    fun onClear() {
-//    }
-//
-//    @org.junit.jupiter.api.Test
-//    fun onSign() {
-//    }
-//
-//    @org.junit.jupiter.api.Test
-//    fun onPercent() {
-//    }
-//
-//    @org.junit.jupiter.api.Test
-//    fun onEqual() {
-//    }
+class MainActivityTest {
 
     @Test
-    @DisplayName("Check output of the calculator based on the buttons clicked by the user")
-    fun evalCalc() {
-        val funObj = MainActivity()
-        val result:String = MainActivity.eval("2+2")
-        assertEquals("4", result)
+    fun onEqual() {
+    }
+
+
+//    @Parameterized.Parameters
+    @Test
+    fun evaluate_calculator_output() {
+        val result: String = MainActivity().eval("1+1")
+        assertEquals("2.0", result)
+
     }
 }
-
-
