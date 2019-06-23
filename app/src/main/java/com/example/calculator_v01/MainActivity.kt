@@ -1,32 +1,26 @@
 package com.example.calculator_v01
 
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import net.objecthunter.exp4j.ExpressionBuilder
 import com.udojava.evalex.Expression
-
-import kotlinx.android.synthetic.main.activity_main.*
-import org.w3c.dom.Text
 import java.lang.ArithmeticException
-import java.math.BigDecimal
 
 private const val TAG = "CALC"
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var calcOutput : TextView
-    lateinit var calcHist : TextView
-    var buildString = ArrayList<String>()
-    var lastNumeric = false
-    var lastEqual = false
-    var lastPercent = false
-    var errorState = false
-    var onlyDec = false
+    private lateinit var calcOutput : TextView
+    private lateinit var calcHist : TextView
+    private var buildString = ArrayList<String>()
+    private var lastNumeric = false
+    private var lastEqual = false
+    private var lastPercent = false
+    private var errorState = false
+    private var onlyDec = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         if (calcOutput.text.isBlank()){
             // don't do anything
         }else if (calcOutput.text.isNotBlank()){
-            calcOutput.text = (toDbl(calcOutput) * -1).toString()
+            calcOutput.text = (stringToDbl(calcOutput) * -1).toString()
         }
 
     }
@@ -99,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         if (calcOutput.text.isBlank() && buildString.isEmpty() || calcOutput.text.toString().toDoubleOrNull() == null){
             // don't do anything
         }else if (buildString.isEmpty() && calcOutput.text.isNotBlank()){
-            calcOutput.text = (toDbl(calcOutput) / 100).toString()
+            calcOutput.text = (stringToDbl(calcOutput) / 100).toString()
             lastPercent = true
         }else if (buildString.isNotEmpty() && calcOutput.text.isNotBlank()){
             calcOutput.text = evalPercent(calcOutput.text.toString()).toString()
@@ -138,14 +132,7 @@ class MainActivity : AppCompatActivity() {
         return expression.eval().toString()
     }
 
-    private fun dblToInt(num:Double):String{
-        if (num - num.toInt() == 0.0){
-            return num.toInt().toString()
-        }
-        return num.toString()
-    }
-
-    private fun toDbl(input:TextView):Double{
+    private fun stringToDbl(input:TextView):Double{
         return input.text.toString().toDouble()
     }
 }
