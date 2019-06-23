@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <corners android:radius="@dimen/buttonRadius"/>
+            <solid android:color="@color/btn_other"/>
+            <padding android:top="@dimen/buttonPad" android:right="@dimen/buttonPad" android:bottom="@dimen/buttonPad" android:left="@dimen/buttonPad"/>
+            <size android:width="@dimen/buttonWidth" android:height="@dimen/buttonHeight"/>
+        </shape>
+    </item>
+    <!--<item android:state_pressed="true">-->
+    <!--<shape android:shape="oval">-->
+    <!--<corners android:radius="@dimen/buttonRadius"/>-->
+    <!--<solid android:color="@color/btn_pressed"/>-->
+    <!--<padding android:top="@dimen/buttonPad" android:right="@dimen/buttonPad" android:bottom="@dimen/buttonPad" android:left="@dimen/buttonPad"/>-->
+    <!--<size android:width="@dimen/buttonWidth" android:height="@dimen/buttonHeight"/>-->
+    <!--</shape>-->
+    <!--</item>-->
+</selector>

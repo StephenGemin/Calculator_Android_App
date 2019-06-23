@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calculator_V0.1</string>
+    <string name="app_name">Calculator</string>
 
     <!--numbers-->
     <string name="btn0">0</string>

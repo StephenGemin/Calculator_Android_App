@@ -9,8 +9,8 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--android:layout_margin="@dimen/marginGlobal"-->
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
     <LinearLayout
             android:id="@+id/row1"
@@ -23,11 +23,11 @@
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
                 android:layout_weight="0.4"
-                android:gravity="bottom|end"
+                android:gravity="center|end"
                 android:text=""
                 android:textColor="@color/whiteText"
                 android:background="@color/background"
-                android:textSize="18pt"
+                android:textSize="15pt"
                 android:maxLines="1"
                 android:maxLength="12"
                 android:ems="10"/>
@@ -54,41 +54,60 @@
         android:layout_weight="0.12">
         <Button
                 android:id="@+id/btnAC"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25"
                 android:text="@string/btnAC"
                 android:onClick="onClear"
-                android:textSize="14pt"
-                android:background="@drawable/button" tools:ignore="ButtonStyle"/>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/other_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnSign"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25"
                 android:text="@string/btnSign"
                 android:onClick="onSign"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
-        <Button
-                android:id="@+id/btnPer"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/other_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
+        <Button
+                android:id="@+id/btnPer"
                 android:text="@string/btnPer"
                 android:onClick="onPercent"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/other_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnDiv"
+                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btnDiv"
-                android:onClick="onOperator"
-                android:textSize="14pt"
+                android:textSize="@dimen/buttonText"
                 android:textColor="@color/whiteText"
-                android:background="@drawable/button_oper"/>
+                android:gravity="center"
+                android:background="@drawable/oper_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -99,41 +118,60 @@
             android:layout_weight="0.12">
         <Button
                 android:id="@+id/btn7"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn7"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn8"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn8"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn9"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn9"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnMul"
+                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btnMul"
-                android:onClick="onOperator"
-                android:textSize="14pt"
+                android:textSize="@dimen/buttonText"
                 android:textColor="@color/whiteText"
-                android:background="@drawable/button_oper"/>
+                android:gravity="center"
+                android:background="@drawable/oper_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -144,41 +182,60 @@
             android:layout_weight="0.12">
         <Button
                 android:id="@+id/btn4"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn4"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn5"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn5"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn6"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn6"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnSub"
+                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btnSub"
-                android:onClick="onOperator"
-                android:textSize="14pt"
+                android:textSize="@dimen/buttonText"
                 android:textColor="@color/whiteText"
-                android:background="@drawable/button_oper"/>
+                android:gravity="center"
+                android:background="@drawable/oper_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -189,41 +246,60 @@
             android:layout_weight="0.12">
         <Button
                 android:id="@+id/btn1"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn1"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn2"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn2"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn3"
+                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btn3"
-                android:onClick="onDigit"
-                android:textSize="14pt"
-                android:background="@drawable/button"/>
+                android:textSize="@dimen/buttonText"
+                android:textColor="@color/whiteText"
+                android:gravity="center"
+                android:background="@drawable/digit_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnAdd"
+                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="@string/btnAdd"
-                android:onClick="onOperator"
-                android:textSize="14pt"
+                android:textSize="@dimen/buttonText"
                 android:textColor="@color/whiteText"
-                android:background="@drawable/button_oper"/>
+                android:gravity="center"
+                android:background="@drawable/oper_buttons"
+                android:layout_marginTop="@dimen/buttonMarginVertical"
+                android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -238,13 +314,18 @@
                 android:layout_weight="0.5">
             <Button
                     android:id="@+id/btn0"
+                    android:onClick="onDigit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:text="@string/btn0"
-                    android:onClick="onDigit"
-                    android:textSize="14pt"
-                    android:background="@drawable/button"/>
+                    android:textSize="@dimen/buttonText"
+                    android:textColor="@color/whiteText"
+                    android:gravity="center"
+                    android:background="@drawable/digit_buttons"
+                    android:layout_marginTop="@dimen/buttonMarginVertical"
+                    android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                        android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         </LinearLayout>
 
         <LinearLayout
@@ -253,23 +334,32 @@
                 android:layout_weight="0.5">
             <Button
                     android:id="@+id/btnDec"
+                    android:onClick="onDigit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
                     android:text="@string/btnDec"
-                    android:onClick="onDecimal"
-                    android:textSize="14pt"
-                    android:background="@drawable/button"/>
+                    android:textSize="@dimen/buttonText"
+                    android:textColor="@color/whiteText"
+                    android:gravity="center"
+                    android:background="@drawable/digit_buttons"
+                    android:layout_marginTop="@dimen/buttonMarginVertical"
+                    android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                        android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
             <Button
                     android:id="@+id/btnEqual"
+                    android:onClick="onEqual"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
                     android:text="@string/btnEqual"
-                    android:onClick="onEqual"
-                    android:textSize="14pt"
+                    android:textSize="@dimen/buttonText"
                     android:textColor="@color/whiteText"
-                    android:background="@drawable/button_oper"/>
+                    android:gravity="center"
+                    android:background="@drawable/oper_buttons"
+                    android:layout_marginTop="@dimen/buttonMarginVertical"
+                    android:layout_marginRight="@dimen/buttonMarginHorizontal"
+                        android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

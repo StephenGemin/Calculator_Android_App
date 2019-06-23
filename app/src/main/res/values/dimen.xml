@@ -6,12 +6,12 @@
 
     <!--Buttons-->
     <dimen name="buttonText">18pt</dimen>
-    <dimen name="buttonHeight">20dp</dimen>
+    <dimen name="buttonHeight">25dp</dimen>
     <dimen name="buttonWidth">25dp</dimen>
-    <dimen name="buttonRadius">8dp</dimen>
+    <dimen name="buttonRadius">4dp</dimen>
     <dimen name="buttonPad">0dp</dimen>
-    <dimen name="buttonMarginVertical">10dp</dimen>
-    <dimen name="buttonMarginHorizontal">6dp</dimen>
+    <dimen name="buttonMarginVertical">6dp</dimen>
+    <dimen name="buttonMarginHorizontal">3dp</dimen>
 
     <!--textbox text sizes & other dimensioning-->
     <dimen name="calcOutputText">30pt</dimen>
