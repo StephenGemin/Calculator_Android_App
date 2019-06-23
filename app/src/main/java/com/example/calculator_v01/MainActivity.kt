@@ -11,6 +11,7 @@ import net.objecthunter.exp4j.ExpressionBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import org.w3c.dom.Text
 import java.lang.ArithmeticException
+import java.math.BigDecimal
 
 private const val TAG = "CALC"
 
@@ -115,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             txt = buildTextOutput()
             txt += calcOutput.text.toString()
             try{
-                calcOutput.text = eval(txt)
+                calcOutput.text = eval(txt).toString()
                 onlyDec = true
             }catch (ex: ArithmeticException){
                 calcOutput.text = getString(R.string.error)
@@ -128,10 +129,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun eval(txt:String):String{
+    fun eval(txt:String):Double{
         Log.i(TAG, "eval method -> String to evaluate: $txt")
         val expression = ExpressionBuilder(txt).build()
-        return (expression.evaluate()).toString()
+        return (expression.evaluate().toBigDecimal()).toDouble()
     }
 
     private fun dblToInt(num:Double):String{
