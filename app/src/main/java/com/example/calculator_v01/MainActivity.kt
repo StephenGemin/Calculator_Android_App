@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import net.objecthunter.exp4j.ExpressionBuilder
+import com.udojava.evalex.Expression
+
 import kotlinx.android.synthetic.main.activity_main.*
 import org.w3c.dom.Text
 import java.lang.ArithmeticException
@@ -116,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             txt = buildTextOutput()
             txt += calcOutput.text.toString()
             try{
-                calcOutput.text = eval(txt).toString()
+                calcOutput.text = eval(txt)
                 onlyDec = true
             }catch (ex: ArithmeticException){
                 calcOutput.text = getString(R.string.error)
@@ -129,10 +131,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun eval(txt:String):Double{
+    fun eval(txt:String):String{
         Log.i(TAG, "eval method -> String to evaluate: $txt")
-        val expression = ExpressionBuilder(txt).build()
-        return (expression.evaluate().toBigDecimal()).toDouble()
+        val expression = Expression(txt)
+        expression.setPrecision(12)
+        return expression.eval().toString()
     }
 
     private fun dblToInt(num:Double):String{
