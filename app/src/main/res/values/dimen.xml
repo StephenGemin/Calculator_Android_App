@@ -4,7 +4,16 @@
     <dimen name="marginLateral">5pt</dimen>
     <dimen name="marginGlobal">10pt</dimen>
 
-    <!--Buttons-->
+
+
+    <!--textbox text sizes & other dimensioning-->
+    <dimen name="calcOutputText">30pt</dimen>
+    <dimen name="calcHistoryText">18pt</dimen>
+    <dimen name="maxLines">1</dimen>
+
+    <!--portrait-->
+    <dimen name="portrait_weight">0.25</dimen>
+    <dimen name="portrait_2xweight">0.5</dimen>
     <dimen name="buttonText">18pt</dimen>
     <dimen name="buttonHeight">25dp</dimen>
     <dimen name="buttonWidth">25dp</dimen>
@@ -13,9 +22,9 @@
     <dimen name="buttonMarginVertical">6dp</dimen>
     <dimen name="buttonMarginHorizontal">3dp</dimen>
 
-    <!--textbox text sizes & other dimensioning-->
-    <dimen name="calcOutputText">30pt</dimen>
-    <dimen name="calcHistoryText">18pt</dimen>
-    <dimen name="maxLines">1</dimen>
-    <dimen name="ems">10</dimen>
+    <!--landscape-->
+    <dimen name="land_weight">0.1</dimen>
+    <dimen name="land_2xweight">0.2</dimen>
+    <dimen name="buttonTextLand">11pt</dimen>
+    <dimen name="buttonSciTextLand">7pt</dimen>
 </resources>

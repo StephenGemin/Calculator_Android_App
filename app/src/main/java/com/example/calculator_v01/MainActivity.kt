@@ -101,7 +101,6 @@ class MainActivity : AppCompatActivity() {
 //            Log.i(TAG, "Percent function -> calcOutput: ${calcOutput.text}")
         }
     }
-
     private fun evalPercent(userInput:String):Double{
         return eval(buildTextOutput() + "0").toDouble() * (userInput.toDouble() / 100)
     }
@@ -130,6 +129,10 @@ class MainActivity : AppCompatActivity() {
         val expression = Expression(txt)
         expression.setPrecision(12)
         return expression.eval().toString()
+    }
+
+    fun doNothing(){
+
     }
 
     private fun stringToDbl(input:TextView):Double{

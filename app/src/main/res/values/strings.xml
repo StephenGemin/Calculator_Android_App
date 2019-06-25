@@ -27,4 +27,40 @@
     <string name="btnEqual">=</string>
     <string name="error">Error</string>
 
+    <!--Scientific-->
+        <!--row1-->
+    <string name="btnLBracket">(</string>
+    <string name="btnRBracket">)</string>
+    <string name="btnMC">mc</string>
+    <string name="btnMemAdd">m+</string>
+    <string name="btnMemDel">m-</string>
+    <string name="btnMemRecall">mr</string>
+        <!--row2-->
+    <string name="btnSecond">2nd</string>
+    <string name="btnSquared">x²</string>
+    <string name="btnCubed">x³</string>
+    <string name="btnPower">xy</string>
+    <string name="btnExponent">ex</string>
+    <string name="btnTenToX">10x</string>
+        <!--row3-->
+    <string name="btnInverse">x^-1</string>
+    <string name="btnSquareRoot">√x</string>
+    <string name="btnCubeRoot">∛x</string>
+    <string name="btnNthRoot">n√x</string>
+    <string name="btnLn">ln</string>
+    <string name="btnLogTen">log10</string>
+        <!--row4-->
+    <string name="btnFactorial">x!</string>
+    <string name="btnSin">sin</string>
+    <string name="btnCos">cos</string>
+    <string name="btnTan">tan</string>
+    <string name="btnExp">e</string>
+    <string name="btnExpTen">EE</string>
+        <!--row5-->
+    <string name="btnRadians">Rad</string>
+    <string name="btnSinh">sinh</string>
+    <string name="btnCosh">cosh</string>
+    <string name="btnTanh">tanh</string>
+    <string name="btnPi">π</string>
+    <string name="btnRandom">Rand</string>
 </resources>
