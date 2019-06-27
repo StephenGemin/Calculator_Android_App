@@ -2,11 +2,29 @@
 A simple android calculator app written in Kotlin
 
 Important build information
+* Windows 10
+* Kotlin code for back-end
 * Android Studio 3.4.1
-* target sdk 29
-* min sdk 21
-* layout designed for Nexus 5/5X, Pixel 2
+* target SDK 24
+* min/max SDK 21/29
+* layout designed checked on:
+  * Nexus 5, xxhdpi
+  * Nexus 5X, 420dpi
+  * Pixel 2, 420dpi
+  * Nexus 7, tvhdpi
 * Used the following virtual devices in the Android Studio Emulator
+* Packages listed in the Wiki **(still in development)**
+
+
+Unique Features
+* Uses EvalEx
+  * Open source repo on GitHub
+  * Calculations based on text input.  Uses Reverse Polish Notation (RPN).  I just happened to find this while trolling through StackOverflow *(lifesaver!!)*
+  * uses BigDecimal precision
+  * I tried using exp4j, but all arithmetic uses double precision.  This led to cases of floating point rounding errors.
+* Has two different layouts for portrait and landscape.  I had a hard time finding code examples on the internet that had both these features
+* Attempting to include unit testing because it was very difficult to find good articles explaining how to do these.  **(still in development)**
+
 
 Name | Resolution | API | Target
 -----|------------|-----|-------
