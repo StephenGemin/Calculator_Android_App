@@ -14,7 +14,7 @@
     <!--portrait-->
     <dimen name="portrait_weight">0.25</dimen>
     <dimen name="portrait_2xweight">0.5</dimen>
-    <dimen name="buttonText">18pt</dimen>
+    <dimen name="buttonText">13pt</dimen>
     <dimen name="buttonHeight">25dp</dimen>
     <dimen name="buttonWidth">25dp</dimen>
     <dimen name="buttonRadius">4dp</dimen>
