@@ -13,7 +13,7 @@ A simple *(basic and scientific)* android calculator app written in Kotlin
 
 <br>
 
-Important build information
+## Important build information
 * Windows 10
 * Kotlin code for back-end
 * Android Studio 3.4.1
@@ -26,6 +26,7 @@ Important build information
   * Pixel 2, 420dpi
   * Nexus 7, tvhdpi
 * Used the following virtual devices in the Android Studio Emulator
+
 Name | Resolution | API | Target
 -----|------------|-----|-------
 Nexus 5X | 1080 x 1920: 420dpi | 24 | Android 7.0
@@ -33,9 +34,7 @@ Nexus 5 | 1080 x 1920: xxhdpi | 21 | Android 5.0
 Pixel 2 | 1080 x 1920: 420dpi | 24 | Android 7.0
 Pixel 2 | 1080 x 1920: 420dpi | 29 | Android 9.+
 
-
-
-Unique Features
+## Unique Features
 * Uses EvalEx
   * Open source repo on GitHub for function/equation evaluations
   * Calculations based on text input.  Uses Reverse Polish Notation (RPN).  I just happened to find this while trolling through StackOverflow *(lifesaver!!)*
