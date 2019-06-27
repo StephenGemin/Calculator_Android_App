@@ -1,5 +1,5 @@
 # Calculator_Android_App
-A simple *(basic and scientific)* android calculator app written in Kotlin
+Basic and scientific android calculator app with unit testing all written using Kotlin
 
 <br>
 
@@ -35,10 +35,11 @@ Pixel 2 | 1080 x 1920: 420dpi | 24 | Android 7.0
 Pixel 2 | 1080 x 1920: 420dpi | 29 | Android 9.+
 
 ## Unique Features
-* Uses EvalEx
-  * Open source repo on GitHub for function/equation evaluations
-  * Calculations based on text input.  Uses Reverse Polish Notation (RPN).  I just happened to find this while trolling through StackOverflow *(lifesaver!!)*
-  * uses BigDecimal precision
-  * I tried using exp4j, but all arithmetic uses double precision.  This led to cases of floating point rounding errors.
+* Uses [EvalEx](https://github.com/uklimaschewski/EvalEx)
+  * [EvalEx](https://github.com/uklimaschewski/EvalEx) is a handy expression evaluator for Java, that allows to evaluate simple mathematical and boolean expressions
+  * Finding this tool was a big relief, see issues with [exp4j](https://github.com/fasseg/exp4j) below.
+  * Calculations based on text input.  Uses [Reverse Polish Notation (RPN)](https://en.wikipedia.org/wiki/Reverse_Polish_notation).  I just happened to find this while trolling through StackOverflow *(lifesaver!!)*
+  * Uses BigDecimal precision
+  * I tried using [exp4j](https://github.com/fasseg/exp4j), but all arithmetic uses double precision.  This led to cases of floating point rounding errors.
 * Has two different layouts for portrait and landscape.  I had a hard time finding code examples on the internet that had both these features
 * Attempting to include unit testing because it was very difficult to find good articles explaining how to do these.  **(still in development)**
