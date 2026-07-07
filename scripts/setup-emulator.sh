@@ -120,6 +120,10 @@ EOF
     echo "✓ AVD '$AVD_NAME' created."
 fi
 
+# Kill any existing emulator processes
+pkill -f "qemu-system.*headless" 2>/dev/null || true
+sleep 1
+
 # Boot the emulator
 echo ""
 echo "Booting emulator '$AVD_NAME'..."
