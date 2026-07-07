@@ -61,6 +61,7 @@ class CalculatorEngine {
             lastNumeric = false
             onlyDec = false
             lastEqual = false
+            lastPercent = false
         }
     }
 

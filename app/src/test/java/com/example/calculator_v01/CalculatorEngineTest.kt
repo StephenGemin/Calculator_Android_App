@@ -45,6 +45,12 @@ class CalculatorEngineTest {
         assertEquals("1.1", output)
     }
 
+    @Test
+    fun `operator after a leading percent is not silently cleared`() {
+        digit("1"); percent(); op("+"); digit("1"); equal()
+        assertEquals("1.01", output)
+    }
+
     // --- Baseline healthy-path coverage ---
 
     @Test
