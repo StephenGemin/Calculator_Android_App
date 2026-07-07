@@ -21,12 +21,13 @@ A precision-focused Android calculator with **dual portrait/landscape layouts** 
 
 ## Architecture
 
-The app uses a single-Activity design with the calculator logic embedded in `MainActivity.kt`. The UI responds to button clicks, maintains calculation state, and delegates expression evaluation to EvalEx.
+The app uses a single-Activity design. `MainActivity` is a thin UI layer that wires button clicks to `CalculatorEngine` and renders its state; all calculation logic and state live in `CalculatorEngine`, which delegates expression evaluation to EvalEx.
 
 ### Key Components
-- **MainActivity** (`app/src/main/java/com/example/calculator_v01/MainActivity.kt`) — UI state, button handlers, EvalEx integration
+- **CalculatorEngine** (`app/src/main/java/com/example/calculator_v01/CalculatorEngine.kt`) — state machine for calculator input/eval, EvalEx integration
+- **MainActivity** (`app/src/main/java/com/example/calculator_v01/MainActivity.kt`) — button handlers and rendering only, no calc logic
 - **Layouts** — `activity_main.xml` (portrait) and `layout-land/activity_main.xml` (landscape)
-- **Tests** — `MainActivityTest.kt` — parameterized unit tests for arithmetic operations
+- **Tests** — `CalculatorEngineTest.kt` (state behavior) and `CalculatorEvalTest.kt` (parameterized arithmetic evaluation)
 
 ## Build Information
 
