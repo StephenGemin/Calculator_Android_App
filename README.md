@@ -7,9 +7,13 @@
 
 A precision-focused Android calculator with **dual portrait/landscape layouts** (basic & scientific) and **arbitrary-precision arithmetic** using BigDecimal. Written entirely in Kotlin.
 
-| Basic (Portrait) | Scientific (Landscape) |
+| Basic Calculator (Light) | Basic Calculator (Dark) |
 |---|---|
-| ![Basic Calculator](./images/basic_calculator_layout.png) | ![Scientific Calculator](./images/scientific_calculator_layout.png) |
+| ![Basic Calculator Light](./images/basic_calculator_layout_light.jpg) | ![Basic Calculator Dark](./images/basic_calculator_layout_dark.jpg) |
+
+| Scientific Calculator (Light) | Scientific Calculator (Dark) |
+|---|---|
+| ![Scientific Calculator Light](./images/scientific_calculator_layout_light.jpg) | ![Scientific Calculator Dark](./images/scientific_calculator_layout_dark.jpg) |
 
 ## Features
 
