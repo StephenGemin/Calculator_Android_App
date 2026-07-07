@@ -53,7 +53,7 @@ class CalculatorEngine {
             buildString.add(currentOutput)
             buildString.add(operatorText)
             displayListener?.updateHistory(buildTextOutput())
-            displayListener?.updateOutput("")
+            displayListener?.updateOutput(operatorText)
             lastNumeric = false
             onlyDec = false
         }
