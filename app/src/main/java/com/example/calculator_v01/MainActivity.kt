@@ -2,19 +2,16 @@ package com.example.calculator_v01
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import com.udojava.evalex.Expression
 import java.lang.ArithmeticException
-
-private const val TAG = "CALC"
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var calcOutput : TextView
     private lateinit var calcHist : TextView
+    private val engine = CalculatorEngine()
     private var buildString = ArrayList<String>()
     private var lastNumeric = false
     private var lastEqual = false
@@ -102,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun evalPercent(userInput:String):Double{
-        return eval(buildTextOutput() + "0").toDouble() * (userInput.toDouble() / 100)
+        return engine.eval(buildTextOutput() + "0").toDouble() * (userInput.toDouble() / 100)
     }
 
     fun onEqual(view:View){
@@ -111,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             txt = buildTextOutput()
             txt += calcOutput.text.toString()
             try{
-                calcOutput.text = eval(txt)
+                calcOutput.text = engine.eval(txt)
                 onlyDec = true
             }catch (ex: ArithmeticException){
                 calcOutput.text = getString(R.string.error)
@@ -124,15 +121,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun eval(txt:String):String{
-        Log.i(TAG, "eval method -> String to evaluate: $txt")
-        val expression = Expression(txt)
-        expression.setPrecision(12)
-        return expression.eval().toString()
-    }
-
-    fun doNothing(){
-
+    fun doNothing(view: View) {
     }
 
     private fun stringToDbl(input:TextView):Double{

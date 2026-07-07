@@ -55,7 +55,7 @@
         <Button
                 android:id="@+id/btnLBracket"
                 android:text="@string/btnLBracket"
-                android:onClick=""
+                android:onClick="doNothing"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/land_weight"
