@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="buttonEqualSize">32dp</dimen>
+    <dimen name="buttonEqualWidth">56dp</dimen>
+    <dimen name="buttonEqualRadius">16dp</dimen>
+    <dimen name="gridPaddingHorizontal">8dp</dimen>
+</resources>

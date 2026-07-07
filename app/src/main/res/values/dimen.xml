@@ -14,13 +14,17 @@
     <!--portrait-->
     <dimen name="portrait_weight">0.25</dimen>
     <dimen name="portrait_2xweight">0.5</dimen>
-    <dimen name="buttonText">13pt</dimen>
+    <dimen name="buttonText">18pt</dimen>
     <dimen name="buttonHeight">25dp</dimen>
     <dimen name="buttonWidth">25dp</dimen>
     <dimen name="buttonRadius">4dp</dimen>
     <dimen name="buttonPad">0dp</dimen>
     <dimen name="buttonMarginVertical">6dp</dimen>
     <dimen name="buttonMarginHorizontal">3dp</dimen>
+    <dimen name="buttonEqualSize">56dp</dimen>
+    <dimen name="buttonEqualWidth">56dp</dimen>
+    <dimen name="buttonEqualRadius">28dp</dimen>
+    <dimen name="gridPaddingHorizontal">16dp</dimen>
 
     <!--landscape-->
     <dimen name="land_weight">0.1</dimen>

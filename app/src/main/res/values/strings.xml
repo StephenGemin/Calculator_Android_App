@@ -39,14 +39,14 @@
     <string name="btnSecond">2nd</string>
     <string name="btnSquared">x²</string>
     <string name="btnCubed">x³</string>
-    <string name="btnPower">xy</string>
-    <string name="btnExponent">ex</string>
-    <string name="btnTenToX">10x</string>
+    <string name="btnPower">xʸ</string>
+    <string name="btnExponent">eˣ</string>
+    <string name="btnTenToX">10ˣ</string>
         <!--row3-->
-    <string name="btnInverse">x^-1</string>
+    <string name="btnInverse">x⁻¹</string>
     <string name="btnSquareRoot">√x</string>
     <string name="btnCubeRoot">∛x</string>
-    <string name="btnNthRoot">n√x</string>
+    <string name="btnNthRoot">ⁿ√x</string>
     <string name="btnLn">ln</string>
     <string name="btnLogTen">log10</string>
         <!--row4-->
