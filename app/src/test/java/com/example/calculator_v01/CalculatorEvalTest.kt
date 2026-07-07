@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 
 @RunWith(Parameterized::class)
-class TestCalcOutput(val input: String, val expected: String) {
+class CalculatorEvalTest(val input: String, val expected: String) {
 
     companion object{
         @JvmStatic
