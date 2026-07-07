@@ -24,7 +24,7 @@ class TestCalcOutput(val input: String, val expected: String) {
 
     @Test
     fun evaluate_calculator_output() {
-        assertEquals(expected, MainActivity().eval(input))
-
+        val engine = CalculatorEngine()
+        assertEquals(expected, engine.eval(input))
     }
 }
