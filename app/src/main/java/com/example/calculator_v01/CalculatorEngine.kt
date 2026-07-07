@@ -1,6 +1,5 @@
 package com.example.calculator_v01
 
-import java.lang.ArithmeticException
 import com.udojava.evalex.Expression
 
 class CalculatorEngine {
@@ -29,11 +28,13 @@ class CalculatorEngine {
     }
 
     fun onDigit(digitText: String, currentOutput: String) {
-        if (errorState || lastEqual) {
+        if (errorState || lastEqual || lastPercent) {
             buildString.clear()
             displayListener?.updateOutput(digitText)
             errorState = false
             lastEqual = false
+            lastPercent = false
+            onlyDec = false
         } else if (!lastNumeric) {
             displayListener?.updateOutput(digitText)
         } else {
@@ -68,13 +69,15 @@ class CalculatorEngine {
         errorState = false
         onlyDec = false
         lastPercent = false
+        lastEqual = false
         buildString.clear()
     }
 
     fun onSign(currentOutput: String) {
-        if (currentOutput.isNotBlank()) {
+        if (lastNumeric && !errorState) {
             val newValue = (currentOutput.toDoubleOrNull() ?: 0.0) * -1
             displayListener?.updateOutput(newValue.toString())
+            onlyDec = true
         }
     }
 
@@ -85,9 +88,11 @@ class CalculatorEngine {
             val result = (currentOutput.toDoubleOrNull() ?: 0.0) / 100
             displayListener?.updateOutput(result.toString())
             lastPercent = true
+            onlyDec = true
         } else if (buildString.isNotEmpty() && currentOutput.isNotBlank()) {
             val result = evalPercent(currentOutput)
             displayListener?.updateOutput(result.toString())
+            onlyDec = true
         }
     }
 
@@ -101,7 +106,7 @@ class CalculatorEngine {
                 lastEqual = true
                 buildString.clear()
                 true
-            } catch (ex: ArithmeticException) {
+            } catch (ex: Exception) {
                 displayListener?.showError()
                 errorState = true
                 lastNumeric = false

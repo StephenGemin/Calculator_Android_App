@@ -2,7 +2,6 @@ package com.example.calculator_v01
 
 import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 
 class CalculatorEngineTest {
@@ -118,12 +117,7 @@ class CalculatorEngineTest {
         assertEquals("5.0", fake.output)
     }
 
-    // --- Latent bugs found during walkthrough: documented as expected-behavior
-    // tests, ignored so CI stays green until each is fixed. Remove the @Ignore
-    // once the corresponding fix lands. ---
-
     @Test
-    @Ignore("latent bug: onlyDec not reset after onEqual's fresh-start, blocking decimal on next number")
     fun `decimal point works on a new number after equals`() {
         digit("1"); op("+"); digit("1"); equal()
         digit("2"); dec(); digit("5")
@@ -131,7 +125,6 @@ class CalculatorEngineTest {
     }
 
     @Test
-    @Ignore("latent bug: onPercent produces decimal output without setting onlyDec, allowing a second decimal point")
     fun `decimal point is rejected after a percent conversion`() {
         digit("5"); percent()
         assertEquals("0.05", fake.output)
@@ -141,7 +134,6 @@ class CalculatorEngineTest {
     }
 
     @Test
-    @Ignore("latent bug: onSign produces decimal output (trailing .0) without setting onlyDec")
     fun `decimal point is rejected after sign toggle`() {
         digit("5"); sign()
         assertEquals("-5.0", fake.output)
@@ -151,7 +143,6 @@ class CalculatorEngineTest {
     }
 
     @Test
-    @Ignore("latent bug: onSign guards on isNotBlank instead of lastNumeric && !errorState")
     fun `sign toggle is a no-op right after an operator`() {
         digit("1"); op("+")
         sign()
@@ -159,7 +150,6 @@ class CalculatorEngineTest {
     }
 
     @Test
-    @Ignore("latent bug: onSign guards on isNotBlank instead of lastNumeric && !errorState")
     fun `sign toggle is a no-op during an error state`() {
         digit("1"); op("/"); digit("0"); equal()
         assertTrue(engine.errorState)
@@ -169,17 +159,14 @@ class CalculatorEngineTest {
     }
 
     @Test
-    @Ignore("latent bug: onEqual only catches ArithmeticException, so a malformed expression crashes instead of showing an error")
-    fun `malformed expression from a double decimal point shows an error instead of crashing`() {
-        digit("5"); percent(); dec(); digit("1")
-        op("+"); digit("1")
+    fun `malformed expression shows an error instead of crashing`() {
+        digit("1"); engine.onOperator("+*", fake.output); digit("1")
 
         equal()
         assertTrue(engine.errorState)
     }
 
     @Test
-    @Ignore("latent bug: lastPercent is never consumed, so a digit after a percent conversion glues onto the result instead of starting fresh")
     fun `digit after percent starts a new number`() {
         digit("5"); percent()
         assertTrue(engine.lastPercent)
@@ -189,7 +176,6 @@ class CalculatorEngineTest {
     }
 
     @Test
-    @Ignore("latent bug: onClear doesn't reset lastEqual (state-hygiene, no observable output symptom today)")
     fun `clear resets lastEqual`() {
         digit("1"); op("+"); digit("1"); equal()
         clear()
