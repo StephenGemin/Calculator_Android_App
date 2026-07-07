@@ -62,7 +62,7 @@ case "${1:-}" in
             fi
             export PATH="$ANDROID_HOME/platform-tools:$PATH"
             DEVICE_LIST=$("$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" list device 2>/dev/null)
-            DEVICE=$(echo "$DEVICE_LIST" | grep -A1 "^id: $1 or" | tail -1 | sed 's/.*"\([^"]*\)".*/\1/')
+            DEVICE=$(echo "$DEVICE_LIST" | grep "^id: $1 or" | sed 's/.*"\([^"]*\)".*/\1/')
             if [ -z "$DEVICE" ]; then
                 echo "Error: Device ID $1 not found"
                 echo "Run with --list to see available devices"
