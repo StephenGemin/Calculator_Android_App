@@ -85,11 +85,8 @@ echo ""
 # Build APK
 echo "Building APK (${BUILD_TYPE})..."
 cd "$(dirname "$0")/.."
-if [ "$BUILD_TYPE" = "release" ]; then
-    ./gradlew assemble${BUILD_TYPE^} > /dev/null 2>&1
-else
-    ./gradlew assemble${BUILD_TYPE^} > /dev/null 2>&1
-fi
+BUILD_TYPE_CAP="$(tr '[:lower:]' '[:upper:]' <<< "${BUILD_TYPE:0:1}")${BUILD_TYPE:1}"
+./gradlew "assemble${BUILD_TYPE_CAP}" > /dev/null 2>&1
 echo "✓ Build complete"
 
 # Find the APK
