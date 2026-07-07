@@ -54,10 +54,14 @@
     <string name="btnSin">sin</string>
     <string name="btnCos">cos</string>
     <string name="btnTan">tan</string>
+    <string name="btnAsin">asin</string>
+    <string name="btnAcos">acos</string>
+    <string name="btnAtan">atan</string>
     <string name="btnExp">e</string>
     <string name="btnExpTen">EE</string>
         <!--row5-->
     <string name="btnRadians">Rad</string>
+    <string name="btnDegrees">Deg</string>
     <string name="btnSinh">sinh</string>
     <string name="btnCosh">cosh</string>
     <string name="btnTanh">tanh</string>

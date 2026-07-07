@@ -63,9 +63,9 @@ class CalculatorEngine {
     }
 
     fun onOperator(operatorText: String) {
-        val currentOutput = state.output
+        val currentOutput = normalizeOperand(state.output)
         if (lastNumeric && !errorState) {
-            buildString.add(currentOutput)
+            buildString.add(currentOutput + pendingCloseParens(currentOutput))
             buildString.add(operatorText)
             state = state.copy(history = buildTextOutput(), output = operatorText)
             lastNumeric = false
@@ -107,9 +107,15 @@ class CalculatorEngine {
             lastPercent = true
             onlyDec = true
         } else if (buildString.isNotEmpty() && currentOutput.isNotBlank()) {
-            val result = evalPercent(currentOutput)
-            state = state.copy(output = result.toString())
-            onlyDec = true
+            try {
+                val result = evalPercent(currentOutput)
+                state = state.copy(output = result.toString())
+                onlyDec = true
+            } catch (ex: Exception) {
+                state = state.copy(isError = true)
+                errorState = true
+                lastNumeric = false
+            }
         }
     }
 
@@ -148,9 +154,9 @@ class CalculatorEngine {
     }
 
     fun onEqual(): Boolean {
-        val currentOutput = state.output
+        val currentOutput = normalizeOperand(state.output)
         if (lastNumeric && !errorState && buildString.isNotEmpty()) {
-            val txt = buildTextOutput() + currentOutput
+            val txt = buildTextOutput() + currentOutput + pendingCloseParens(currentOutput)
             return try {
                 val result = eval(txt)
                 state = state.copy(output = result, isError = false)
@@ -180,9 +186,139 @@ class CalculatorEngine {
         return eval(buildTextOutput() + "0").toDouble() * (userInput.toDoubleOrNull() ?: 0.0) / 100
     }
 
+    // Strips a dangling EE marker (see onExponentEntry) so "2E" is treated as "2"
+    // instead of leaking an incomplete literal into eval().
+    private fun normalizeOperand(output: String): String = output.removeSuffix("E")
+
+    // nth-root (see onNthRoot in MainActivity) pushes an unclosed "^(1/" fragment onto
+    // buildString; this closes it once the operand that completes it is finalized, whether
+    // by another operator or by "=". Other operators never contain "(", so this is a no-op
+    // for every existing operation.
+    private fun pendingCloseParens(operand: String): String {
+        val txt = buildTextOutput() + operand
+        val opens = txt.count { it == '(' } - txt.count { it == ')' }
+        return if (opens > 0) ")".repeat(opens) else ""
+    }
+
+    private fun unaryOp(build: (String) -> String) {
+        val currentOutput = state.output
+        if (!lastNumeric || errorState || currentOutput.toDoubleOrNull() == null) return
+        try {
+            state = state.copy(output = eval(build(currentOutput)))
+            onlyDec = true
+        } catch (ex: Exception) {
+            state = state.copy(isError = true)
+            errorState = true
+            lastNumeric = false
+        }
+    }
+
+    fun onSquared() = unaryOp { "$it^2" }
+    fun onCubed() = unaryOp { "$it^3" }
+    fun onInverse() = unaryOp { "1/$it" }
+    fun onSquareRoot() = unaryOp { "SQRT($it)" }
+    fun onCubeRoot() = unaryOp { "$it^(1/3)" }
+    fun onLn() = unaryOp { "LOG($it)" }
+    fun onLogTen() = unaryOp { "LOG10($it)" }
+    fun onExpBaseX() = unaryOp { "e^$it" }
+    fun onTenToX() = unaryOp { "10^$it" }
+    fun onSinh() = unaryOp { "SINH($it)" }
+    fun onCosh() = unaryOp { "COSH($it)" }
+    fun onTanh() = unaryOp { "TANH($it)" }
+
+    fun onCos() = unaryOp {
+        val arg = if (mode.angleUnit == AngleUnit.RADIANS) "DEG($it)" else it
+        "COS($arg)"
+    }
+
+    fun onTan() = unaryOp {
+        val arg = if (mode.angleUnit == AngleUnit.RADIANS) "DEG($it)" else it
+        "TAN($arg)"
+    }
+
+    // ASIN/ACOS/ATAN return degrees; convert to radians when that's the active unit.
+    fun onAsin() = unaryOp {
+        val result = "ASIN($it)"
+        if (mode.angleUnit == AngleUnit.RADIANS) "RAD($result)" else result
+    }
+
+    fun onAcos() = unaryOp {
+        val result = "ACOS($it)"
+        if (mode.angleUnit == AngleUnit.RADIANS) "RAD($result)" else result
+    }
+
+    fun onAtan() = unaryOp {
+        val result = "ATAN($it)"
+        if (mode.angleUnit == AngleUnit.RADIANS) "RAD($result)" else result
+    }
+
+    fun onFactorial() {
+        val currentOutput = state.output
+        if (!lastNumeric || errorState) return
+        val value = currentOutput.toDoubleOrNull() ?: return
+        if (value < 0 || value != Math.floor(value)) {
+            state = state.copy(isError = true)
+            errorState = true
+            lastNumeric = false
+            return
+        }
+        unaryOp { "FACT($it)" }
+    }
+
+    fun onExp() {
+        if (errorState || lastEqual || lastPercent) {
+            buildString.clear()
+            errorState = false
+            lastEqual = false
+            lastPercent = false
+        }
+        state = state.copy(output = eval("e"))
+        lastNumeric = true
+        onlyDec = true
+    }
+
+    fun onRandom() {
+        if (errorState || lastEqual || lastPercent) {
+            buildString.clear()
+            errorState = false
+            lastEqual = false
+            lastPercent = false
+        }
+        state = state.copy(output = eval("RANDOM()"))
+        lastNumeric = true
+        onlyDec = true
+    }
+
+    // EE: appends a bare exponent marker; digits typed afterward extend the exponent
+    // (e.g. "2" -> "2E" -> "2E3"). A dangling "E" with no exponent digits is stripped by
+    // normalizeOperand() before it can reach eval() or combine with an operator.
+    fun onExponentEntry() {
+        if (errorState || !lastNumeric || state.output.contains("E")) return
+        state = state.copy(output = state.output + "E")
+    }
+
+    fun onMemorySubtract() {
+        val currentOutput = state.output.toDoubleOrNull() ?: return
+        mode = mode.copy(memory = (mode.memory ?: 0.0) - currentOutput)
+    }
+
+    fun onMemoryClear() {
+        mode = mode.copy(memory = null)
+    }
+
+    fun onSecondToggle() {
+        mode = mode.copy(secondActive = !mode.secondActive)
+    }
+
+    fun onAngleUnitToggle() {
+        mode = mode.copy(
+            angleUnit = if (mode.angleUnit == AngleUnit.DEGREES) AngleUnit.RADIANS else AngleUnit.DEGREES
+        )
+    }
+
     fun eval(txt: String): String {
         val expression = Expression(txt)
         expression.setPrecision(12)
-        return expression.eval().toString()
+        return expression.eval().toPlainString()
     }
 }

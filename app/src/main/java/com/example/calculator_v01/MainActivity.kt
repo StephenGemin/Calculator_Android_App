@@ -43,16 +43,60 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnEqual.setOnClickListener { engine.onEqual(); render() }
 
-        binding.btnSin?.setOnClickListener { engine.onSin(); render() }
+        binding.btnSin?.setOnClickListener {
+            if (engine.mode.secondActive) engine.onAsin() else engine.onSin()
+            render()
+        }
+        binding.btnCos?.setOnClickListener {
+            if (engine.mode.secondActive) engine.onAcos() else engine.onCos()
+            render()
+        }
+        binding.btnTan?.setOnClickListener {
+            if (engine.mode.secondActive) engine.onAtan() else engine.onTan()
+            render()
+        }
+        binding.btnSinh?.setOnClickListener { engine.onSinh(); render() }
+        binding.btnCosh?.setOnClickListener { engine.onCosh(); render() }
+        binding.btnTanh?.setOnClickListener { engine.onTanh(); render() }
+
         binding.btnPower?.setOnClickListener { engine.onOperator("^"); render() }
+        binding.btnNthRoot?.setOnClickListener { engine.onOperator("^(1/"); render() }
+
+        binding.btnSquared?.setOnClickListener { engine.onSquared(); render() }
+        binding.btnCubed?.setOnClickListener { engine.onCubed(); render() }
+        binding.btnInverse?.setOnClickListener { engine.onInverse(); render() }
+        binding.btnSquareRoot?.setOnClickListener { engine.onSquareRoot(); render() }
+        binding.btnCubeRoot?.setOnClickListener { engine.onCubeRoot(); render() }
+        binding.btnLn?.setOnClickListener { engine.onLn(); render() }
+        binding.btnLogTen?.setOnClickListener { engine.onLogTen(); render() }
+        binding.btnFactorial?.setOnClickListener { engine.onFactorial(); render() }
+        binding.btnExponent?.setOnClickListener { engine.onExpBaseX(); render() }
+        binding.btnTenToX?.setOnClickListener { engine.onTenToX(); render() }
+        binding.btnExpTen?.setOnClickListener { engine.onExponentEntry(); render() }
+
         binding.btnPi?.setOnClickListener { engine.onPi(); render() }
+        binding.btnExp?.setOnClickListener { engine.onExp(); render() }
+        binding.btnRandom?.setOnClickListener { engine.onRandom(); render() }
+
         binding.btnMemAdd?.setOnClickListener { engine.onMemoryAdd(); render() }
         binding.btnMemRecall?.setOnClickListener { engine.onMemoryRecall(); render() }
+        binding.btnMemDel?.setOnClickListener { engine.onMemorySubtract(); render() }
+        binding.btnMC?.setOnClickListener { engine.onMemoryClear(); render() }
+
+        binding.btnSecond?.setOnClickListener { engine.onSecondToggle(); render() }
+        binding.btnRadians?.setOnClickListener { engine.onAngleUnitToggle(); render() }
     }
 
     private fun render() {
         val state = engine.state
         binding.calcOutput.text = if (state.isError) getString(R.string.error) else state.output
         binding.calcHist.text = state.history
+
+        val mode = engine.mode
+        binding.btnSin?.text = getString(if (mode.secondActive) R.string.btnAsin else R.string.btnSin)
+        binding.btnCos?.text = getString(if (mode.secondActive) R.string.btnAcos else R.string.btnCos)
+        binding.btnTan?.text = getString(if (mode.secondActive) R.string.btnAtan else R.string.btnTan)
+        binding.btnRadians?.text =
+            getString(if (mode.angleUnit == AngleUnit.DEGREES) R.string.btnRadians else R.string.btnDegrees)
     }
 }

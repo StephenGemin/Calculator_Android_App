@@ -260,4 +260,170 @@ class CalculatorEngineTest {
         engine.onMemoryRecall()
         assertEquals("", output)
     }
+
+    // --- Remaining scientific functions ---
+
+    @Test
+    fun `squared and cubed compute powers`() {
+        digit("3"); engine.onSquared()
+        assertEquals("9", output)
+
+        clear()
+        digit("3"); engine.onCubed()
+        assertEquals("27", output)
+    }
+
+    @Test
+    fun `inverse computes reciprocal`() {
+        digit("4"); engine.onInverse()
+        assertEquals("0.25", output)
+    }
+
+    @Test
+    fun `square root and cube root`() {
+        digit("9"); engine.onSquareRoot()
+        assertEquals("3", output)
+
+        clear()
+        digit("8"); engine.onCubeRoot()
+        assertEquals("2", output)
+    }
+
+    @Test
+    fun `square root of a negative number is an error, not a crash`() {
+        digit("9"); sign(); engine.onSquareRoot()
+        assertTrue(engine.errorState)
+    }
+
+    @Test
+    fun `ln and log10`() {
+        digit("1"); engine.onLn()
+        assertEquals("0", output)
+
+        clear()
+        digit("1"); digit("0"); digit("0"); engine.onLogTen()
+        assertEquals("2", output)
+    }
+
+    @Test
+    fun `factorial of a small integer`() {
+        digit("5"); engine.onFactorial()
+        assertEquals("120", output)
+    }
+
+    @Test
+    fun `factorial of a negative or non-integer is an error`() {
+        digit("5"); sign(); engine.onFactorial()
+        assertTrue(engine.errorState)
+
+        clear()
+        digit("2"); dec(); digit("5"); engine.onFactorial()
+        assertTrue(engine.errorState)
+    }
+
+    @Test
+    fun `cos and tan compute in degrees by default`() {
+        digit("6"); digit("0"); engine.onCos()
+        assertEquals("0.5", output)
+
+        clear()
+        digit("4"); digit("5"); engine.onTan()
+        assertEquals("1", output)
+    }
+
+    @Test
+    fun `e to the x and ten to the x`() {
+        digit("0"); engine.onExpBaseX()
+        assertEquals("1", output)
+
+        clear()
+        digit("2"); engine.onTenToX()
+        assertEquals("100", output)
+    }
+
+    @Test
+    fun `hyperbolic functions are not angle-unit sensitive`() {
+        digit("0"); engine.onSinh()
+        assertEquals("0", output)
+    }
+
+    @Test
+    fun `nth root computes x to the power of 1 over n`() {
+        digit("8"); engine.onOperator("^(1/"); digit("3"); equal()
+        assertEquals("2", output)
+    }
+
+    @Test
+    fun `percent pressed while nth root's index is still pending is an error, not a crash`() {
+        digit("8"); engine.onOperator("^(1/"); digit("3"); percent()
+        assertTrue(engine.errorState)
+    }
+
+    @Test
+    fun `nth root chained with another operator does not swallow the operator`() {
+        digit("8"); engine.onOperator("^(1/"); digit("3"); op("+"); digit("1"); equal()
+        assertEquals("3", output)
+    }
+
+    @Test
+    fun `e constant inserts euler's number as a fresh operand`() {
+        engine.onExp()
+        assertEquals("2.71828182846", output)
+        assertTrue(engine.lastNumeric)
+    }
+
+    @Test
+    fun `second toggle flips secondActive`() {
+        assertFalse(engine.mode.secondActive)
+        engine.onSecondToggle()
+        assertTrue(engine.mode.secondActive)
+    }
+
+    @Test
+    fun `asin acos atan return degrees by default and radians when toggled`() {
+        digit("0"); digit("."); digit("5"); engine.onAsin()
+        assertEquals("30", output)
+
+        clear()
+        engine.onAngleUnitToggle()
+        digit("0"); digit("."); digit("5"); engine.onAsin()
+        assertEquals("0.523598775598", output)
+    }
+
+    @Test
+    fun `angle unit toggle flips between degrees and radians`() {
+        assertEquals(AngleUnit.DEGREES, engine.mode.angleUnit)
+        engine.onAngleUnitToggle()
+        assertEquals(AngleUnit.RADIANS, engine.mode.angleUnit)
+        engine.onAngleUnitToggle()
+        assertEquals(AngleUnit.DEGREES, engine.mode.angleUnit)
+    }
+
+    @Test
+    fun `memory subtract and clear`() {
+        digit("5"); engine.onMemoryAdd()
+        clear()
+        digit("2"); engine.onMemorySubtract()
+        clear()
+        engine.onMemoryRecall()
+        assertEquals("3.0", output)
+
+        engine.onMemoryClear()
+        assertNull(engine.mode.memory)
+    }
+
+    @Test
+    fun `exponent entry appends E and digits extend it`() {
+        digit("2"); engine.onExponentEntry(); digit("3")
+        assertEquals("2E3", output)
+
+        op("+"); digit("0"); equal()
+        assertEquals("2000", output)
+    }
+
+    @Test
+    fun `dangling exponent entry is dropped instead of corrupting the next operator`() {
+        digit("2"); engine.onExponentEntry(); op("+"); digit("3"); equal()
+        assertEquals("5", output)
+    }
 }
