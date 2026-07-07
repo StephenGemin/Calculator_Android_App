@@ -2,8 +2,16 @@ package com.example.calculator_v01
 
 import com.udojava.evalex.Expression
 
+data class CalculatorUiState(
+    val output: String = "",
+    val history: String = "",
+    val isError: Boolean = false
+)
+
 class CalculatorEngine {
     private val buildString = ArrayList<String>()
+    var state = CalculatorUiState()
+        private set
     var lastNumeric = false
         private set
     var lastEqual = false
@@ -15,52 +23,41 @@ class CalculatorEngine {
     var onlyDec = false
         private set
 
-    interface DisplayListener {
-        fun updateOutput(text: String)
-        fun updateHistory(text: String)
-        fun showError()
-    }
-
-    private var displayListener: DisplayListener? = null
-
-    fun setDisplayListener(listener: DisplayListener) {
-        this.displayListener = listener
-    }
-
-    fun onDigit(digitText: String, currentOutput: String) {
+    fun onDigit(digitText: String) {
+        val currentOutput = state.output
         if (errorState || lastEqual || lastPercent) {
             buildString.clear()
-            displayListener?.updateOutput(digitText)
+            state = state.copy(output = digitText, isError = false)
             errorState = false
             lastEqual = false
             lastPercent = false
             onlyDec = false
         } else if (!lastNumeric) {
-            displayListener?.updateOutput(digitText)
+            state = state.copy(output = digitText)
         } else {
-            displayListener?.updateOutput(currentOutput + digitText)
+            state = state.copy(output = currentOutput + digitText)
         }
         lastNumeric = true
     }
 
-    fun onDecimal(decimalText: String, currentOutput: String) {
+    fun onDecimal(decimalText: String) {
         if (errorState) return
         if (!lastNumeric) {
-            displayListener?.updateOutput("0$decimalText")
+            state = state.copy(output = "0$decimalText")
             lastNumeric = true
             onlyDec = true
         } else if (!onlyDec) {
-            displayListener?.updateOutput(currentOutput + decimalText)
+            state = state.copy(output = state.output + decimalText)
             onlyDec = true
         }
     }
 
-    fun onOperator(operatorText: String, currentOutput: String) {
+    fun onOperator(operatorText: String) {
+        val currentOutput = state.output
         if (lastNumeric && !errorState) {
             buildString.add(currentOutput)
             buildString.add(operatorText)
-            displayListener?.updateHistory(buildTextOutput())
-            displayListener?.updateOutput(operatorText)
+            state = state.copy(history = buildTextOutput(), output = operatorText)
             lastNumeric = false
             onlyDec = false
             lastEqual = false
@@ -68,8 +65,7 @@ class CalculatorEngine {
     }
 
     fun onClear() {
-        displayListener?.updateOutput("")
-        displayListener?.updateHistory("")
+        state = CalculatorUiState()
         lastNumeric = false
         errorState = false
         onlyDec = false
@@ -78,44 +74,47 @@ class CalculatorEngine {
         buildString.clear()
     }
 
-    fun onSign(currentOutput: String) {
+    fun onSign() {
+        val currentOutput = state.output
         if (lastNumeric && !errorState) {
             val newValue = if (currentOutput.startsWith("-")) {
                 currentOutput.removePrefix("-")
             } else {
                 "-$currentOutput"
             }
-            displayListener?.updateOutput(newValue)
+            state = state.copy(output = newValue)
         }
     }
 
-    fun onPercent(currentOutput: String) {
+    fun onPercent() {
+        val currentOutput = state.output
         if ((currentOutput.isBlank() && buildString.isEmpty()) || currentOutput.toDoubleOrNull() == null) {
             return
         } else if (buildString.isEmpty() && currentOutput.isNotBlank()) {
             val result = (currentOutput.toDoubleOrNull() ?: 0.0) / 100
-            displayListener?.updateOutput(result.toString())
+            state = state.copy(output = result.toString())
             lastPercent = true
             onlyDec = true
         } else if (buildString.isNotEmpty() && currentOutput.isNotBlank()) {
             val result = evalPercent(currentOutput)
-            displayListener?.updateOutput(result.toString())
+            state = state.copy(output = result.toString())
             onlyDec = true
         }
     }
 
-    fun onEqual(currentOutput: String): Boolean {
+    fun onEqual(): Boolean {
+        val currentOutput = state.output
         if (lastNumeric && !errorState && buildString.isNotEmpty()) {
             val txt = buildTextOutput() + currentOutput
             return try {
                 val result = eval(txt)
-                displayListener?.updateOutput(result)
+                state = state.copy(output = result, isError = false)
                 onlyDec = true
                 lastEqual = true
                 buildString.clear()
                 true
             } catch (ex: Exception) {
-                displayListener?.showError()
+                state = state.copy(isError = true)
                 errorState = true
                 lastNumeric = false
                 false
