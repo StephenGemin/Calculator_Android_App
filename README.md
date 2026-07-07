@@ -1,41 +1,91 @@
-# Calculator_Android_App
-Basic and scientific android calculator app with unit testing all written using Kotlin
-<br>
+# Calculator Android App
 
-## Portrait Layout -- Basic Calculator
-![Simple Calculator Portrait Layout](./images/basic_calculator_layout.png)
-<br>
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.0-purple.svg)](https://kotlinlang.org/)
+[![API](https://img.shields.io/badge/API-21%2B-green.svg)](https://android-arsenal.com/api?level=21)
+[![Target SDK](https://img.shields.io/badge/Target%20SDK-35-orange.svg)](https://developer.android.com/about/versions/15)
 
-## Landscape Layout -- Scientific Calculator
-![Scientific Calculator Landscape Layout](./images/scientific_calculator_layout.png)
-<br>
+A precision-focused Android calculator with **dual portrait/landscape layouts** (basic & scientific) and **arbitrary-precision arithmetic** using BigDecimal. Written entirely in Kotlin.
 
-## Unique Features
-* Uses [EvalEx](https://github.com/uklimaschewski/EvalEx)
-  * [EvalEx](https://github.com/uklimaschewski/EvalEx) is a handy expression evaluator for Java, that allows to evaluate simple mathematical and boolean expressions
-  * Finding this tool was a big relief because it uses BigDecimal precision.  I was using [exp4j](https://github.com/fasseg/exp4j), but the double precision led to floating point rounding errors.
-  * Calculations based on text input.  Uses [Reverse Polish Notation (RPN)](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
-* Has two different layouts for portrait and landscape.  I had a hard time finding code examples on the internet that had both these features
-* Attempting to include unit testing because it was very difficult to find good articles explaining how to do these.  **(still in development)**
-<br>
+| Basic (Portrait) | Scientific (Landscape) |
+|---|---|
+| ![Basic Calculator](./images/basic_calculator_layout.png) | ![Scientific Calculator](./images/scientific_calculator_layout.png) |
 
-## Important build information
-* Windows 10
-* Kotlin code for back-end
-* Android Studio 3.4.1
-* target SDK 24
-* min/max SDK 21/29
-* Packages added to build.gradle listed in the Wiki **(still in development)**
-* layout designed checked on:
-  * Nexus 5, xxhdpi
-  * Nexus 5X, 420dpi
-  * Pixel 2, 420dpi
-  * Nexus 7, tvhdpi
-* Used the following virtual devices in the Android Studio Emulator
+## Features
 
-Name | Resolution | API | Target
------|------------|-----|-------
-Nexus 5X | 1080 x 1920: 420dpi | 24 | Android 7.0
-Nexus 5 | 1080 x 1920: xxhdpi | 21 | Android 5.0
-Pixel 2 | 1080 x 1920: 420dpi | 24 | Android 7.0
-Pixel 2 | 1080 x 1920: 420dpi | 29 | Android 9.+
+- **BigDecimal precision arithmetic** — uses [EvalEx](https://github.com/uklimaschewski/EvalEx) for exact decimal calculations (no floating-point rounding errors)
+- **Reverse Polish Notation (RPN)** evaluation for reliable expression parsing
+- **Dual-mode UI** — basic four-function calculator in portrait, full scientific calculator in landscape
+- **Modern Android stack** — Kotlin, AndroidX, Material Design compatible
+- **Unit tested** — includes parameterized JUnit tests for calculation validation
+
+## Quick Start
+
+### Prerequisites
+- JDK 17 or higher
+- Android SDK 21+ (minimum API level)
+- Android build tools 35+
+
+### Build & Run
+
+```bash
+# Clone the repo
+git clone https://github.com/StephenGemin/Calculator_Android_App.git
+cd Calculator_Android_App
+
+# Build a debug APK
+./gradlew assembleDebug
+
+# Install on an emulator or connected device
+./gradlew installDebug
+
+# Launch the app
+adb shell am start -n com.example.calculator_v01/.MainActivity
+```
+
+### Using Android Studio
+1. Open the project in Android Studio
+2. Click **Run** or press **Shift + F10** to build and launch on an emulator or device
+
+## Build Information
+
+| Property | Value |
+|---|---|
+| Gradle | 8.7+ |
+| AGP (Android Gradle Plugin) | 8.5+ |
+| Kotlin | 2.0.0 |
+| Compile SDK | 35 |
+| Min SDK | 21 |
+| Target SDK | 35 |
+| Java/Kotlin JVM | 17 |
+
+## Architecture
+
+The app uses a single-Activity design with the calculator logic embedded in `MainActivity.kt`. The UI responds to button clicks, maintains calculation state, and delegates expression evaluation to EvalEx.
+
+### Key Components
+- **MainActivity** (`app/src/main/java/com/example/calculator_v01/MainActivity.kt`) — UI state, button handlers, EvalEx integration
+- **Layouts** — `activity_main.xml` (portrait) and `layout-land/activity_main.xml` (landscape)
+- **Tests** — `MainActivityTest.kt` — parameterized unit tests for arithmetic operations
+
+## Testing
+
+Run the unit tests:
+```bash
+./gradlew testDebugUnitTest
+```
+
+The test suite validates core arithmetic operations (addition, subtraction, multiplication, division, percent) across various input combinations.
+
+## License
+
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details. Feel free to use, modify, and distribute this code.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## Acknowledgments
+
+- [EvalEx](https://github.com/uklimaschewski/EvalEx) — expression evaluation library with BigDecimal precision
+- [Android Developers](https://developer.android.com) — comprehensive Android documentation
