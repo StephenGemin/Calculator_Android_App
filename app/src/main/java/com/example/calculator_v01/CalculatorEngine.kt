@@ -44,7 +44,12 @@ class CalculatorEngine {
     }
 
     fun onDecimal(decimalText: String, currentOutput: String) {
-        if (lastNumeric && !errorState && !onlyDec) {
+        if (errorState) return
+        if (!lastNumeric) {
+            displayListener?.updateOutput("0$decimalText")
+            lastNumeric = true
+            onlyDec = true
+        } else if (!onlyDec) {
             displayListener?.updateOutput(currentOutput + decimalText)
             onlyDec = true
         }
@@ -75,9 +80,12 @@ class CalculatorEngine {
 
     fun onSign(currentOutput: String) {
         if (lastNumeric && !errorState) {
-            val newValue = (currentOutput.toDoubleOrNull() ?: 0.0) * -1
-            displayListener?.updateOutput(newValue.toString())
-            onlyDec = true
+            val newValue = if (currentOutput.startsWith("-")) {
+                currentOutput.removePrefix("-")
+            } else {
+                "-$currentOutput"
+            }
+            displayListener?.updateOutput(newValue)
         }
     }
 

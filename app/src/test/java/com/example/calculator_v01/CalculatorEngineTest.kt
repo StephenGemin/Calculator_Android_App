@@ -114,7 +114,13 @@ class CalculatorEngineTest {
     @Test
     fun `sign toggled twice returns to the original value`() {
         digit("5"); sign(); sign()
-        assertEquals("5.0", fake.output)
+        assertEquals("5", fake.output)
+    }
+
+    @Test
+    fun `sign toggle preserves integer formatting instead of forcing a decimal`() {
+        digit("1"); sign()
+        assertEquals("-1", fake.output)
     }
 
     @Test
@@ -134,8 +140,17 @@ class CalculatorEngineTest {
     }
 
     @Test
-    fun `decimal point is rejected after sign toggle`() {
+    fun `decimal point is allowed after sign toggle when no decimal is present yet`() {
         digit("5"); sign()
+        assertEquals("-5", fake.output)
+
+        dec()
+        assertEquals("-5.", fake.output)
+    }
+
+    @Test
+    fun `decimal point is still rejected after sign toggle if a decimal is already present`() {
+        digit("5"); dec(); digit("0"); sign()
         assertEquals("-5.0", fake.output)
 
         dec()
@@ -173,6 +188,15 @@ class CalculatorEngineTest {
 
         digit("3")
         assertEquals("3", fake.output)
+    }
+
+    @Test
+    fun `decimal point right after an operator starts a new number at 0`() {
+        digit("1"); op("+"); dec()
+        assertEquals("0.", fake.output)
+
+        digit("5"); equal()
+        assertEquals("1.5", fake.output)
     }
 
     @Test
