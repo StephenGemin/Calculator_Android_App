@@ -29,7 +29,7 @@ class CalculatorEngine {
     }
 
     fun onDigit(digitText: String, currentOutput: String) {
-        if (errorState || lastEqual) {
+        if (errorState || lastEqual || !lastNumeric) {
             buildString.clear()
             displayListener?.updateOutput(digitText)
             errorState = false
