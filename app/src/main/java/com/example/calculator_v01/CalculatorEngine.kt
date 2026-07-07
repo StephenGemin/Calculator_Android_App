@@ -45,7 +45,6 @@ class CalculatorEngine {
     fun onDecimal(decimalText: String, currentOutput: String) {
         if (lastNumeric && !errorState && !onlyDec) {
             displayListener?.updateOutput(currentOutput + decimalText)
-            lastNumeric = false
             onlyDec = true
         }
     }
@@ -58,6 +57,7 @@ class CalculatorEngine {
             displayListener?.updateOutput(operatorText)
             lastNumeric = false
             onlyDec = false
+            lastEqual = false
         }
     }
 
