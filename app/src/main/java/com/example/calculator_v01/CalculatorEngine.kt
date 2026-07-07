@@ -8,9 +8,19 @@ data class CalculatorUiState(
     val isError: Boolean = false
 )
 
+enum class AngleUnit { DEGREES, RADIANS }
+
+data class ScientificMode(
+    val angleUnit: AngleUnit = AngleUnit.DEGREES,
+    val secondActive: Boolean = false,
+    val memory: Double? = null
+)
+
 class CalculatorEngine {
     private val buildString = ArrayList<String>()
     var state = CalculatorUiState()
+        private set
+    var mode = ScientificMode()
         private set
     var lastNumeric = false
         private set
