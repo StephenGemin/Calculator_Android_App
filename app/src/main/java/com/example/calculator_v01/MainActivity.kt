@@ -42,6 +42,12 @@ class MainActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener { engine.onOperator("+"); render() }
 
         binding.btnEqual.setOnClickListener { engine.onEqual(); render() }
+
+        binding.btnSin?.setOnClickListener { engine.onSin(); render() }
+        binding.btnPower?.setOnClickListener { engine.onOperator("^"); render() }
+        binding.btnPi?.setOnClickListener { engine.onPi(); render() }
+        binding.btnMemAdd?.setOnClickListener { engine.onMemoryAdd(); render() }
+        binding.btnMemRecall?.setOnClickListener { engine.onMemoryRecall(); render() }
     }
 
     private fun render() {

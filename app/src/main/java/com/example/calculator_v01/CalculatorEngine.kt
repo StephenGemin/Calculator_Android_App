@@ -113,6 +113,40 @@ class CalculatorEngine {
         }
     }
 
+    fun onSin() {
+        val currentOutput = state.output
+        if (!lastNumeric || errorState || currentOutput.toDoubleOrNull() == null) return
+        // EvalEx's SIN expects its argument in degrees; DEG() converts radians to degrees.
+        val arg = if (mode.angleUnit == AngleUnit.RADIANS) "DEG($currentOutput)" else currentOutput
+        val result = eval("SIN($arg)")
+        state = state.copy(output = result)
+        onlyDec = true
+    }
+
+    fun onPi() {
+        if (errorState || lastEqual || lastPercent) {
+            buildString.clear()
+            errorState = false
+            lastEqual = false
+            lastPercent = false
+        }
+        state = state.copy(output = eval("PI"))
+        lastNumeric = true
+        onlyDec = true
+    }
+
+    fun onMemoryAdd() {
+        val currentOutput = state.output.toDoubleOrNull() ?: return
+        mode = mode.copy(memory = (mode.memory ?: 0.0) + currentOutput)
+    }
+
+    fun onMemoryRecall() {
+        val memoryValue = mode.memory ?: return
+        state = state.copy(output = memoryValue.toString())
+        lastNumeric = true
+        onlyDec = true
+    }
+
     fun onEqual(): Boolean {
         val currentOutput = state.output
         if (lastNumeric && !errorState && buildString.isNotEmpty()) {

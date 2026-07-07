@@ -202,4 +202,62 @@ class CalculatorEngineTest {
         clear()
         assertFalse(engine.lastEqual)
     }
+
+    // --- Scientific mode groundwork ---
+
+    @Test
+    fun `sin computes in degrees by default`() {
+        digit("3"); digit("0"); engine.onSin()
+        assertEquals("0.5", output)
+    }
+
+    @Test
+    fun `sin is a no-op on empty input`() {
+        engine.onSin()
+        assertEquals("", output)
+    }
+
+    @Test
+    fun `power uses caret as the operator`() {
+        digit("2"); engine.onOperator("^"); digit("3"); equal()
+        assertEquals("8", output)
+    }
+
+    @Test
+    fun `pi inserts the constant as a fresh operand`() {
+        engine.onPi()
+        assertEquals("3.14159265359", output)
+        assertTrue(engine.lastNumeric)
+    }
+
+    @Test
+    fun `pi after equals starts a new expression instead of appending`() {
+        digit("1"); op("+"); digit("1"); equal()
+        engine.onPi()
+        assertEquals("3.14159265359", output)
+    }
+
+    @Test
+    fun `memory add then recall round-trips the value`() {
+        digit("5"); engine.onMemoryAdd()
+        clear()
+        engine.onMemoryRecall()
+        assertEquals("5.0", output)
+    }
+
+    @Test
+    fun `memory add accumulates across multiple calls`() {
+        digit("5"); engine.onMemoryAdd()
+        clear()
+        digit("3"); engine.onMemoryAdd()
+        clear()
+        engine.onMemoryRecall()
+        assertEquals("8.0", output)
+    }
+
+    @Test
+    fun `memory recall on empty memory is a no-op`() {
+        engine.onMemoryRecall()
+        assertEquals("", output)
+    }
 }
