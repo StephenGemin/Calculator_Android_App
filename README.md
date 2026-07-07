@@ -19,6 +19,27 @@ A precision-focused Android calculator with **dual portrait/landscape layouts** 
 - **Modern Android stack** — Kotlin, AndroidX, Material Design compatible
 - **Unit tested** — includes parameterized JUnit tests for calculation validation
 
+## Architecture
+
+The app uses a single-Activity design with the calculator logic embedded in `MainActivity.kt`. The UI responds to button clicks, maintains calculation state, and delegates expression evaluation to EvalEx.
+
+### Key Components
+- **MainActivity** (`app/src/main/java/com/example/calculator_v01/MainActivity.kt`) — UI state, button handlers, EvalEx integration
+- **Layouts** — `activity_main.xml` (portrait) and `layout-land/activity_main.xml` (landscape)
+- **Tests** — `MainActivityTest.kt` — parameterized unit tests for arithmetic operations
+
+## Build Information
+
+| Property | Value |
+|---|---|
+| Gradle | 8.7+ |
+| AGP (Android Gradle Plugin) | 8.5+ |
+| Kotlin | 2.0.0 |
+| Compile SDK | 35 |
+| Min SDK | 21 |
+| Target SDK | 35 |
+| Java/Kotlin JVM | 17 |
+
 ## Quick Start
 
 ### Prerequisites
@@ -47,43 +68,37 @@ adb shell am start -n com.example.calculator_v01/.MainActivity
 1. Open the project in Android Studio
 2. Click **Run** or press **Shift + F10** to build and launch on an emulator or device
 
-## Build Information
-
-| Property | Value |
-|---|---|
-| Gradle | 8.7+ |
-| AGP (Android Gradle Plugin) | 8.5+ |
-| Kotlin | 2.0.0 |
-| Compile SDK | 35 |
-| Min SDK | 21 |
-| Target SDK | 35 |
-| Java/Kotlin JVM | 17 |
-
-## Architecture
-
-The app uses a single-Activity design with the calculator logic embedded in `MainActivity.kt`. The UI responds to button clicks, maintains calculation state, and delegates expression evaluation to EvalEx.
-
-### Key Components
-- **MainActivity** (`app/src/main/java/com/example/calculator_v01/MainActivity.kt`) — UI state, button handlers, EvalEx integration
-- **Layouts** — `activity_main.xml` (portrait) and `layout-land/activity_main.xml` (landscape)
-- **Tests** — `MainActivityTest.kt` — parameterized unit tests for arithmetic operations
-
 ## Testing
 
-Run the unit tests:
+### Unit Tests
+
+Run the automated test suite:
 ```bash
 ./gradlew testDebugUnitTest
 ```
 
 The test suite validates core arithmetic operations (addition, subtraction, multiplication, division, percent) across various input combinations.
 
-## License
+### Manual Testing
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details. Feel free to use, modify, and distribute this code.
+With the emulator running and the app installed, test the UI interactively:
 
-## Contributing
+1. **Portrait (Basic Calculator)**
+   - Enter a calculation: `5 + 3` → tap `=` → verify result is `8`
+   - Test decimal: `2.5 × 4` → verify no floating-point errors
+   - Test percent: `200` → tap `%` → verify result
+   - Test sign toggle: enter `5` → tap `±` → verify becomes `-5`
+   - Test clear: tap `C` → verify display clears
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+2. **Landscape (Scientific Calculator)**
+   - Rotate device to landscape (click rotate button or `Ctrl + Right Arrow`)
+   - Verify scientific buttons appear and work correctly
+   - Test a scientific operation to ensure all layouts render properly
+
+3. **Edge Cases**
+   - Division by zero → should display "Error"
+   - Very large numbers → verify BigDecimal precision holds
+   - Consecutive operators → verify app handles gracefully
 
 ## Acknowledgments
 
