@@ -29,11 +29,13 @@ class CalculatorEngine {
     }
 
     fun onDigit(digitText: String, currentOutput: String) {
-        if (errorState || lastEqual || !lastNumeric) {
+        if (errorState || lastEqual) {
             buildString.clear()
             displayListener?.updateOutput(digitText)
             errorState = false
             lastEqual = false
+        } else if (!lastNumeric) {
+            displayListener?.updateOutput(digitText)
         } else {
             displayListener?.updateOutput(currentOutput + digitText)
         }
