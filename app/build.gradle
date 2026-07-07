@@ -24,6 +24,9 @@ android {
         unitTests.returnDefaultValues = true
         unitTests.includeAndroidResources = true
     }
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false

@@ -55,7 +55,6 @@
         <Button
                 android:id="@+id/btnAC"
                 android:text="@string/btnAC"
-                android:onClick="onClear"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -69,7 +68,6 @@
         <Button
                 android:id="@+id/btnSign"
                 android:text="@string/btnSign"
-                android:onClick="onSign"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -83,7 +81,6 @@
         <Button
                 android:id="@+id/btnPer"
                 android:text="@string/btnPer"
-                android:onClick="onPercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -96,7 +93,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnDiv"
-                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -118,7 +114,6 @@
             android:layout_weight="0.12">
         <Button
                 android:id="@+id/btn7"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -132,7 +127,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn8"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -146,7 +140,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn9"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -160,7 +153,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnMul"
-                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -182,7 +174,6 @@
             android:layout_weight="0.12">
         <Button
                 android:id="@+id/btn4"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -196,7 +187,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn5"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -210,7 +200,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn6"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -224,7 +213,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnSub"
-                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -246,7 +234,6 @@
             android:layout_weight="0.12">
         <Button
                 android:id="@+id/btn1"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -260,7 +247,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn2"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -274,7 +260,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btn3"
-                android:onClick="onDigit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -288,7 +273,6 @@
                 android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
         <Button
                 android:id="@+id/btnAdd"
-                android:onClick="onOperator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@dimen/portrait_weight"
@@ -314,8 +298,7 @@
                 android:layout_weight="0.5">
             <Button
                     android:id="@+id/btn0"
-                    android:onClick="onDigit"
-                    android:layout_width="0dp"
+                        android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="@dimen/portrait_2xweight"
                     android:text="@string/btn0"
@@ -334,8 +317,7 @@
                 android:layout_weight="0.5">
             <Button
                     android:id="@+id/btnDec"
-                    android:onClick="onDigit"
-                    android:layout_width="0dp"
+                        android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="@dimen/portrait_weight"
                     android:text="@string/btnDec"
@@ -348,8 +330,7 @@
                         android:layout_marginLeft="@dimen/buttonMarginHorizontal"/>
             <Button
                     android:id="@+id/btnEqual"
-                    android:onClick="onEqual"
-                    android:layout_width="0dp"
+                        android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="@dimen/portrait_weight"
                     android:text="@string/btnEqual"

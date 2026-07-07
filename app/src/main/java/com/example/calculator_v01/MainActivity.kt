@@ -2,129 +2,57 @@ package com.example.calculator_v01
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import java.lang.ArithmeticException
+import com.example.calculator_v01.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CalculatorEngine.DisplayListener {
 
-    private lateinit var calcOutput : TextView
-    private lateinit var calcHist : TextView
+    private lateinit var binding: ActivityMainBinding
     private val engine = CalculatorEngine()
-    private var buildString = ArrayList<String>()
-    private var lastNumeric = false
-    private var lastEqual = false
-    private var lastPercent = false
-    private var errorState = false
-    private var onlyDec = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        calcOutput = findViewById(R.id.calcOutput)
-        calcHist = findViewById(R.id.calcHist)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        engine.setDisplayListener(this)
+        setupButtonListeners()
     }
 
-    //User clicks any button on the calc app
-    fun onDigit(view:View){
-        if (errorState || lastEqual){
-            this.buildString = ArrayList()
-            calcOutput.text = (view as Button).text
-            errorState = false
-            lastEqual = false
-        }else{
-            calcOutput.append((view as Button).text)
-        }
-        lastNumeric = true
+    private fun setupButtonListeners() {
+        binding.btnAC.setOnClickListener { engine.onClear() }
+        binding.btnSign.setOnClickListener { engine.onSign(binding.calcOutput.text.toString()) }
+        binding.btnPer.setOnClickListener { engine.onPercent(binding.calcOutput.text.toString()) }
+
+        binding.btn0.setOnClickListener { engine.onDigit("0", binding.calcOutput.text.toString()) }
+        binding.btn1.setOnClickListener { engine.onDigit("1", binding.calcOutput.text.toString()) }
+        binding.btn2.setOnClickListener { engine.onDigit("2", binding.calcOutput.text.toString()) }
+        binding.btn3.setOnClickListener { engine.onDigit("3", binding.calcOutput.text.toString()) }
+        binding.btn4.setOnClickListener { engine.onDigit("4", binding.calcOutput.text.toString()) }
+        binding.btn5.setOnClickListener { engine.onDigit("5", binding.calcOutput.text.toString()) }
+        binding.btn6.setOnClickListener { engine.onDigit("6", binding.calcOutput.text.toString()) }
+        binding.btn7.setOnClickListener { engine.onDigit("7", binding.calcOutput.text.toString()) }
+        binding.btn8.setOnClickListener { engine.onDigit("8", binding.calcOutput.text.toString()) }
+        binding.btn9.setOnClickListener { engine.onDigit("9", binding.calcOutput.text.toString()) }
+
+        binding.btnDec.setOnClickListener { engine.onDecimal(".", binding.calcOutput.text.toString()) }
+
+        binding.btnDiv.setOnClickListener { engine.onOperator("/", binding.calcOutput.text.toString()) }
+        binding.btnMul.setOnClickListener { engine.onOperator("*", binding.calcOutput.text.toString()) }
+        binding.btnSub.setOnClickListener { engine.onOperator("-", binding.calcOutput.text.toString()) }
+        binding.btnAdd.setOnClickListener { engine.onOperator("+", binding.calcOutput.text.toString()) }
+
+        binding.btnEqual.setOnClickListener { engine.onEqual(binding.calcOutput.text.toString()) }
     }
 
-    fun onDecimal(view:View){
-        if (lastNumeric && !errorState && !onlyDec){
-            calcOutput.append((view as Button).text)
-            lastNumeric = false
-            onlyDec = true
-        }
-    }
-    private fun buildTextOutput():String{
-        var txtOut = ""
-        for (item in buildString){
-            txtOut += item
-        }
-        return txtOut
+    override fun updateOutput(text: String) {
+        binding.calcOutput.text = text
     }
 
-    fun onOperator(view:View){
-        val txt:String?
-        if (lastNumeric && !errorState){
-            buildString.add(calcOutput.text.toString())
-            buildString.add((view as Button).text.toString())
-            txt = buildTextOutput()
-
-            this.calcOutput.text = ""
-            calcHist.text = txt
-            lastNumeric = false
-            onlyDec = false
-        }
+    override fun updateHistory(text: String) {
+        binding.calcHist.text = text
     }
 
-    fun onClear(view:View){
-        this.calcOutput.text = ""
-        this.calcHist.text = ""
-        lastNumeric = false
-        errorState = false
-        onlyDec = false
-        this.buildString = ArrayList()
-    }
-
-    fun onSign(view:View){
-        if (calcOutput.text.isBlank()){
-            // don't do anything
-        }else if (calcOutput.text.isNotBlank()){
-            calcOutput.text = (stringToDbl(calcOutput) * -1).toString()
-        }
-
-    }
-
-    fun onPercent(view:View){
-        if (calcOutput.text.isBlank() && buildString.isEmpty() || calcOutput.text.toString().toDoubleOrNull() == null){
-            // don't do anything
-        }else if (buildString.isEmpty() && calcOutput.text.isNotBlank()){
-            calcOutput.text = (stringToDbl(calcOutput) / 100).toString()
-            lastPercent = true
-        }else if (buildString.isNotEmpty() && calcOutput.text.isNotBlank()){
-            calcOutput.text = evalPercent(calcOutput.text.toString()).toString()
-//            Log.i(TAG, "Percent function -> buildString: $buildString")
-//            Log.i(TAG, "Percent function -> calcOutput: ${calcOutput.text}")
-        }
-    }
-    private fun evalPercent(userInput:String):Double{
-        return engine.eval(buildTextOutput() + "0").toDouble() * (userInput.toDouble() / 100)
-    }
-
-    fun onEqual(view:View){
-        var txt:String
-        if (lastNumeric && !errorState && buildString.isNotEmpty()){
-            txt = buildTextOutput()
-            txt += calcOutput.text.toString()
-            try{
-                calcOutput.text = engine.eval(txt)
-                onlyDec = true
-            }catch (ex: ArithmeticException){
-                calcOutput.text = getString(R.string.error)
-                errorState = true
-                lastNumeric = false
-            }
-        lastEqual = true
-        this.buildString = ArrayList()
-        }
-    }
-
-
-    fun doNothing(view: View) {
-    }
-
-    private fun stringToDbl(input:TextView):Double{
-        return input.text.toString().toDouble()
+    override fun showError() {
+        binding.calcOutput.text = getString(R.string.error)
     }
 }
