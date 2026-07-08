@@ -43,7 +43,7 @@
                 android:text=""
                 android:textColor="@color/textPrimary"
                 android:background="@color/background"
-                android:textSize="40pt"
+                android:textSize="20pt"
                 android:maxLines="1"
                 android:maxLength="12"/>
     </LinearLayout>
