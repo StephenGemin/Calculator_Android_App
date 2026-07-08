@@ -7,6 +7,22 @@
 
 A precision-focused Android calculator with **dual portrait/landscape layouts** (basic & scientific) and **arbitrary-precision arithmetic** using BigDecimal. Written entirely in Kotlin.
 
+## Quick Start
+
+* build: `make build`
+* install: `make install`
+* launch: `make launch`
+    * build, install and launch app
+
+### Prerequisites
+- JDK 17 or higher
+- Android SDK 21+ (minimum API level)
+- Android build tools 35+
+
+### Using Android Studio
+1. Open the project in Android Studio
+2. Click **Run** or press **Shift + F10** to build and launch on an emulator or device
+
 <div align="center">
 
 | Basic Calculator (Light) | Basic Calculator (Dark) |
@@ -54,66 +70,6 @@ The app uses a single-Activity design. `MainActivity` is a thin UI layer that wi
 | Min SDK | 21 |
 | Target SDK | 35 |
 | Java/Kotlin JVM | 17 |
-
-## Quick Start
-
-### Prerequisites
-- JDK 17 or higher
-- Android SDK 21+ (minimum API level)
-- Android build tools 35+
-
-### Build & Run
-
-```bash
-# Clone the repo
-git clone https://github.com/StephenGemin/Calculator_Android_App.git
-cd Calculator_Android_App
-
-# Build a debug APK
-./gradlew assembleDebug
-
-# Install on an emulator or connected device
-./gradlew installDebug
-
-# Launch the app
-adb shell am start -n com.example.calculator_v01/.MainActivity
-```
-
-### Using Android Studio
-1. Open the project in Android Studio
-2. Click **Run** or press **Shift + F10** to build and launch on an emulator or device
-
-## Testing
-
-### Unit Tests
-
-Run the automated test suite:
-```bash
-./gradlew testDebugUnitTest
-```
-
-The test suite validates core arithmetic operations (addition, subtraction, multiplication, division, percent) across various input combinations.
-
-### Manual Testing
-
-With the emulator running and the app installed, test the UI interactively:
-
-1. **Portrait (Basic Calculator)**
-   - Enter a calculation: `5 + 3` → tap `=` → verify result is `8`
-   - Test decimal: `2.5 × 4` → verify no floating-point errors
-   - Test percent: `200` → tap `%` → verify result
-   - Test sign toggle: enter `5` → tap `±` → verify becomes `-5`
-   - Test clear: tap `C` → verify display clears
-
-2. **Landscape (Scientific Calculator)**
-   - Rotate device to landscape (click rotate button or `Ctrl + Right Arrow`)
-   - Verify scientific buttons appear and work correctly
-   - Test a scientific operation to ensure all layouts render properly
-
-3. **Edge Cases**
-   - Division by zero → should display "Error"
-   - Very large numbers → verify BigDecimal precision holds
-   - Consecutive operators → verify app handles gracefully
 
 ## Acknowledgments
 
