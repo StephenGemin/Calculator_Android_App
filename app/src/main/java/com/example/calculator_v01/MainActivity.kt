@@ -1,7 +1,10 @@
 package com.example.calculator_v01
 
 import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
 import android.os.Bundle
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.calculator_v01.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,8 +17,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        applyStatusBarVisibility()
         setupButtonListeners()
         render()
+    }
+
+    private fun applyStatusBarVisibility() {
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            controller.hide(WindowInsetsCompat.Type.statusBars())
+        } else {
+            controller.show(WindowInsetsCompat.Type.statusBars())
+        }
     }
 
     private fun setupButtonListeners() {
